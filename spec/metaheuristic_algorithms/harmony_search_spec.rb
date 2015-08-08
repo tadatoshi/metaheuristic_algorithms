@@ -19,9 +19,9 @@ describe MetaheuristicAlgorithms::HarmonySearch do
                                    harmony_search_size: harmony_search_size, harmony_memory_acceping_rate: harmony_memory_acceping_rate, 
                                    pitch_adjusting_rate: pitch_adjusting_rate)
 
-    expect(result[:best_decision_variable_values][0]).to be_within(0.1).of(BigDecimal('1.0112'))
-    expect(result[:best_decision_variable_values][1]).to be_within(0.1).of(BigDecimal('0.9988')) 
-    expect(result[:best_objective_function_value]).to be_within(0.1).of(BigDecimal('0.0563'))      
+    expect(result[:best_decision_variable_values][0]).to be_within(1).of(BigDecimal('1.0112'))
+    expect(result[:best_decision_variable_values][1]).to be_within(1).of(BigDecimal('0.9988')) 
+    expect(result[:best_objective_function_value]).to be_within(1).of(BigDecimal('0.0563'))      
 
   end
 

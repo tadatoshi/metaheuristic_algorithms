@@ -21,8 +21,8 @@ describe MetaheuristicAlgorithms::GeneticAlgorithm do
                                        number_of_mutation_sites: number_of_mutation_sites, crossover_probability: crossover_probability, 
                                        mutation_probability: mutation_probability)
 
-    expect(result[:best_decision_variable_values][0]).to be_within(0.001).of(BigDecimal('3.1416'))
-    expect(result[:best_objective_function_value]).to be_within(0.001).of(BigDecimal('1.000'))   
+    expect(result[:best_decision_variable_values][0]).to be_within(1).of(BigDecimal('3.1416'))
+    expect(result[:best_objective_function_value]).to be_within(1).of(BigDecimal('1.000'))   
 
   end
 

@@ -21,9 +21,9 @@ describe MetaheuristicAlgorithms::SimplifiedParticleSwarmOptimization do
     # expect(result[:best_decision_variable_values][1]).to be_within(0.001).of(BigDecimal('1.57049')) 
     # expect(result[:best_objective_function_value]).to be_within(0.001).of(BigDecimal('-1.801'))
     # Values of one execution of the equivalent MatLab code: 
-    expect(result[:best_decision_variable_values][0]).to be_within(0.1).of(BigDecimal('2.1701'))
-    expect(result[:best_decision_variable_values][1]).to be_within(0.1).of(BigDecimal('1.5703')) 
-    expect(result[:best_objective_function_value]).to be_within(0.1).of(BigDecimal('-1.7843'))       
+    expect(result[:best_decision_variable_values][0]).to be_within(1).of(BigDecimal('2.1701'))
+    expect(result[:best_decision_variable_values][1]).to be_within(1).of(BigDecimal('1.5703')) 
+    expect(result[:best_objective_function_value]).to be_within(1).of(BigDecimal('-1.7843'))       
 
   end
 

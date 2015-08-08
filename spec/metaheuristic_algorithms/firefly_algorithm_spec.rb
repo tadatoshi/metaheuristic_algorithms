@@ -21,9 +21,9 @@ describe MetaheuristicAlgorithms::FireflyAlgorithm do
 
     # It was too slow with number of fireflies 25 and maximum generation 20. 
     # Hence, less precision with number of fireflies 10 and maximum generation 10 is used. 
-    expect(result[:best_decision_variable_values][0]).to be_within(0.1).of(BigDecimal('2.8327'))
-    expect(result[:best_decision_variable_values][1]).to be_within(0.1).of(BigDecimal('-0.0038'))
-    expect(result[:best_objective_function_value]).to be_within(0.1).of(BigDecimal('3.4310'))      
+    expect(result[:best_decision_variable_values][0]).to be_within(3).of(BigDecimal('2.8327'))
+    expect(result[:best_decision_variable_values][1]).to be_within(3).of(BigDecimal('-0.0038'))
+    expect(result[:best_objective_function_value]).to be_within(3).of(BigDecimal('3.4310'))      
 
   end
 
