@@ -8,6 +8,7 @@ require 'metaheuristic_algorithms/harmony_search'
 require 'metaheuristic_algorithms/firefly_algorithm'
 require 'metaheuristic_algorithms/genetic_algorithm'
 require 'metaheuristic_algorithms/simulated_annealing'
+require 'metaheuristic_algorithms/simplified_particle_swarm_optimization'
 
 module MetaheuristicAlgorithms
   # Your code goes here...
