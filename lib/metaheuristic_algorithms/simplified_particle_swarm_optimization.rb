@@ -27,8 +27,7 @@ module MetaheuristicAlgorithms
       global_best_position = nil
       best_function_value = nil
 
-      # 0 to number_of_iterations-1
-      (0...number_of_iterations).each do |iteration|
+      number_of_iterations.times do |iteration|
 
         function_values = @particle_locations.map do |particle_location|
           @function_wrapper.objective_function_value(particle_location)
@@ -50,8 +49,7 @@ module MetaheuristicAlgorithms
 
         @particle_locations = []
 
-        # 0 to number_of_particiles-1
-        (0...number_of_particiles).each do |individual_index|
+        number_of_particiles.times do |individual_index|
           decision_variable_values = (0...@number_of_variables).map do |variable_index|
             get_decision_variable_value_by_randomization(variable_index)
           end

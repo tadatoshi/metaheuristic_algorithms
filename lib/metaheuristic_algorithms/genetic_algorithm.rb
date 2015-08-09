@@ -29,11 +29,11 @@ module MetaheuristicAlgorithms
 
       initialize_population(population_size)
 
-      (0...maximum_number_of_generations).each do |generation_index|
+      maximum_number_of_generations.times do |generation_index|
 
         @population_copy = deep_clone_population
 
-        (0...population_size).each do |individual_index|
+        population_size.times do |individual_index|
 
           if bigdecimal_rand < crossover_probability
 
@@ -71,8 +71,7 @@ module MetaheuristicAlgorithms
         @population = []
         @population_fitness = []
 
-        # 0 to population_size-1
-        (0...population_size).each do |individual_index|
+        population_size.times do |individual_index|
           decision_variable_values = (0...@number_of_variables).map do |variable_index|
             get_decision_variable_value_by_randomization(variable_index)
           end
@@ -91,7 +90,7 @@ module MetaheuristicAlgorithms
         crossover_pair_1_decimal_values = []
         crossover_pair_2_decimal_values = []
 
-        (0...@number_of_variables).each do |variable_index|
+        @number_of_variables.times do |variable_index|
 
           crossover_pair_1_decimal_value = @population_copy[crossover_pair_1_index][variable_index]
           crossover_pair_2_decimal_value = @population_copy[crossover_pair_2_index][variable_index]
@@ -155,7 +154,7 @@ module MetaheuristicAlgorithms
 
           mutated_binary_32_string = binary_32_string.clone
 
-          (0...number_of_mutation_sites).each do |i|
+          number_of_mutation_sites.to_i.times do |i|
             mutation_site_index = generate_mutation_site_index
             # Flips 1 to 0 or 0 to 1:
             mutated_binary_32_string[mutation_site_index] = ((binary_32_string[mutation_site_index].to_i + 1).modulo(2)).to_s

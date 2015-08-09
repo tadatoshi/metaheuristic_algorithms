@@ -34,8 +34,7 @@ module MetaheuristicAlgorithms
 
       initialize_harmony_memory(harmony_search_size)
 
-      # 0 to maximum_attempt-1
-      (0...maximum_attempt).each do |count|
+      maximum_attempt.times do |count|
 
         decision_variable_values = (0...@number_of_variables).map do |variable_index|
 

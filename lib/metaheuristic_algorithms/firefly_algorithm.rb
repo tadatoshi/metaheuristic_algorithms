@@ -51,8 +51,7 @@ module MetaheuristicAlgorithms
 
       initialize_fireflies(number_of_fireflies)
 
-      # 0 to maximun_generation-1
-      (0...maximun_generation).each do |generation|
+      maximun_generation.times do |generation|
 
         @fireflies.each { |firefly| firefly.update_light_intensity }
 
@@ -100,7 +99,7 @@ module MetaheuristicAlgorithms
 
               attractiveness_beta = attractiveness_beta_at_distance_0 * BigMath.exp(-absorption_coefficient_gamma * distance_of_two_fireflies.power(2), 10)
 
-              (0...@number_of_variables).each do |variable_index|
+              @number_of_variables.times do |variable_index|
                 new_location_coordinate = firefly_i.location_coordinates[variable_index] * (BigDecimal('1') - attractiveness_beta) 
                                           + firefly_j.location_coordinates[variable_index] * attractiveness_beta 
                                           + randomization_parameter_alpha * (bigdecimal_rand - BigDecimal('0.5'))
