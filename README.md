@@ -58,7 +58,7 @@ Step 2. Instantiate the created Function Wrapper and pass it as the first argume
 ```ruby
    require 'metaheuristic_algorithms'
 
-   rosenbrook_function_wrapper = MetaheuristicAlgorithms::FunctionWrappers::RosenbrookFunctionWrapper.new
+   rosenbrook_function_wrapper = RosenbrookFunctionWrapper.new
 
    harmony_search = MetaheuristicAlgorithms::HarmonySearch.new(rosenbrook_function_wrapper, number_of_variables: 2, objective: :minimization)
 
