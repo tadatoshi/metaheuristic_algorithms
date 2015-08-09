@@ -26,6 +26,7 @@ Step 1. Create a Function Wrapper for your objective function by extending Metah
 
 ```ruby
    require 'metaheuristic_algorithms'
+   require 'bigdecimal'
 
    class RosenbrookFunctionWrapper < MetaheuristicAlgorithms::FunctionWrappers::AbstractWrapper
 
@@ -57,6 +58,7 @@ Step 2. Instantiate the created Function Wrapper and pass it as the first argume
 
 ```ruby
    require 'metaheuristic_algorithms'
+   require 'bigdecimal'
 
    rosenbrook_function_wrapper = RosenbrookFunctionWrapper.new
 
