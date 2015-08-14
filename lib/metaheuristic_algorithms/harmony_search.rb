@@ -20,8 +20,6 @@ module MetaheuristicAlgorithms
                                when :minimization
                                  :<
                              end 
-
-      @decision_variable_range = [@function_wrapper.miminum_decision_variable_values, @function_wrapper.maximum_decision_variable_values]   
     end
 
     def search(maximum_attempt: 2500, pitch_adjusting_range: BigDecimal('100'), harmony_search_size: 20, harmony_memory_acceping_rate: BigDecimal('0.95'), pitch_adjusting_rate: BigDecimal('0.7'))
