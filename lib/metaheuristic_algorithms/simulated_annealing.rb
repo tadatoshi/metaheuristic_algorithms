@@ -1,5 +1,6 @@
 require 'bigdecimal/math'
-require 'distribution'
+# In order to support JRuby, decided not to use distribution gem:
+# require 'distribution'
 
 module MetaheuristicAlgorithms
 
@@ -98,7 +99,9 @@ module MetaheuristicAlgorithms
 
             # MatLab example code uses newGuess = initialGuess + rand(1,2) * randn;
             # But in our case, the value range is different. 
-            new_estimate = BigDecimal(Distribution::Normal.rng(previous_estimates[variable_index], standard_diviation_for_estimation).call.to_s)
+            # In order to support JRuby, decided not to use Distribution::Normal.rng:
+            # new_estimate = BigDecimal(Distribution::Normal.rng(previous_estimates[variable_index], standard_diviation_for_estimation).call.to_s)
+            new_estimate = BigDecimal(RandomGaussian.new(previous_estimates[variable_index], standard_diviation_for_estimation).rand.to_s)
 
           end
 

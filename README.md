@@ -18,6 +18,26 @@ Or install it yourself as:
 
     $ gem install metaheuristic_algorithms
 
+## Available Algorithms
+
+In alphabetical order:
+
+* Firefly Algorithm
+        MetaheuristicAlgorithms::FireflyAlgorithm
+* Genetic Algorithm
+        MetaheuristicAlgorithms::GeneticAlgorithm
+* Harmony Search
+        MetaheuristicAlgorithms::HarmonySearch
+* Simplified Particle Swarm Optimization
+        MetaheuristicAlgorithms::SimplifiedParticleSwarmOptimization
+* Simulated Annealing
+        MetaheuristicAlgorithms::SimulatedAnnealing
+
+Algorithms under construction:
+
+* Ant Colony Optimization
+* Virtual Bee Algorithm
+
 ## Usage
 
 Step 1. Create a Function Wrapper for your objective function by extending MetaheuristicAlgorithms::FunctionWrappers::AbstractWrapper
