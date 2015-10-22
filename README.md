@@ -18,6 +18,12 @@ Or install it yourself as:
 
     $ gem install metaheuristic_algorithms
 
+## Supported Platforms
+
+* MRI Ruby 2.2 or above. 
+
+* JRuby 9.0.0.0 or above. (In an attempt to have better speed, if not fast.)
+
 ## Available Algorithms
 
 In alphabetical order:

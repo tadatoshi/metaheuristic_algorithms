@@ -7,6 +7,17 @@ module MetaheuristicAlgorithms
       + (@function_wrapper.maximum_decision_variable_values[decision_variable_index] - @function_wrapper.miminum_decision_variable_values[decision_variable_index]) * bigdecimal_rand
     end
 
+    # Based on the code by antonakos on http://stackoverflow.com/questions/5825680/code-to-generate-gaussian-normally-distributed-random-numbers-in-ruby
+    # His code is under CC0 1.0 Universal (CC0 1.0)
+    def gaussian(mean, stddev)
+      theta = 2 * Math::PI * Kernel.rand
+      rho = Math.sqrt(-2 * Math.log(1 - Kernel.rand))
+      scale = stddev * rho
+      x = mean + scale * Math.cos(theta)
+      # y = mean + scale * Math.sin(theta)
+      return x
+    end  
+
   end
 
 end

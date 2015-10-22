@@ -6,6 +6,7 @@ module MetaheuristicAlgorithms
 
   class SimulatedAnnealing
     include MetaheuristicAlgorithms::Helper
+    include MetaheuristicAlgorithms::BaseAlgorithmModule
 
     def initialize(function_wrapper, number_of_variables: 1, objective: :maximization)
       @function_wrapper = function_wrapper
@@ -101,7 +102,7 @@ module MetaheuristicAlgorithms
             # But in our case, the value range is different. 
             # In order to support JRuby, decided not to use Distribution::Normal.rng:
             # new_estimate = BigDecimal(Distribution::Normal.rng(previous_estimates[variable_index], standard_diviation_for_estimation).call.to_s)
-            new_estimate = BigDecimal(RandomGaussian.new(previous_estimates[variable_index], standard_diviation_for_estimation).rand.to_s)
+            new_estimate = BigDecimal(gaussian(previous_estimates[variable_index], standard_diviation_for_estimation).to_s)
 
           end
 
