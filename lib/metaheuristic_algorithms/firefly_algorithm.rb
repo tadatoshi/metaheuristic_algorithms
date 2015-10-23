@@ -1,5 +1,5 @@
-require 'bigdecimal'
-require 'bigdecimal/math'
+# require 'bigdecimal'
+# require 'bigdecimal/math'
 
 module MetaheuristicAlgorithms
 
@@ -42,12 +42,15 @@ module MetaheuristicAlgorithms
                                end
     end
 
-    def search(number_of_fireflies: 10, maximun_generation: 10, randomization_parameter_alpha: BigDecimal('0.2'), absorption_coefficient_gamma: BigDecimal('1.0'))
+    # def search(number_of_fireflies: 10, maximun_generation: 10, randomization_parameter_alpha: BigDecimal('0.2'), absorption_coefficient_gamma: BigDecimal('1.0'))
+    def search(number_of_fireflies: 10, maximun_generation: 10, randomization_parameter_alpha: 0.2, absorption_coefficient_gamma: 1.0)
 
       number_of_fireflies = number_of_fireflies.to_i unless number_of_fireflies.kind_of?(Integer)
       maximun_generation = maximun_generation.to_i unless maximun_generation.kind_of?(Integer)
-      randomization_parameter_alpha = BigDecimal(randomization_parameter_alpha.to_s) unless randomization_parameter_alpha.kind_of?(BigDecimal)
-      absorption_coefficient_gamma = BigDecimal(absorption_coefficient_gamma.to_s) unless absorption_coefficient_gamma.kind_of?(BigDecimal)
+      # randomization_parameter_alpha = BigDecimal(randomization_parameter_alpha.to_s) unless randomization_parameter_alpha.kind_of?(BigDecimal)
+      # absorption_coefficient_gamma = BigDecimal(absorption_coefficient_gamma.to_s) unless absorption_coefficient_gamma.kind_of?(BigDecimal)
+      randomization_parameter_alpha = randomization_parameter_alpha.to_f unless randomization_parameter_alpha.kind_of?(Float)
+      absorption_coefficient_gamma = absorption_coefficient_gamma.to_f unless absorption_coefficient_gamma.kind_of?(Float)
 
       initialize_fireflies(number_of_fireflies)
 
@@ -83,7 +86,8 @@ module MetaheuristicAlgorithms
 
       def move_fireflies(randomization_parameter_alpha, absorption_coefficient_gamma)
 
-        attractiveness_beta_at_distance_0 = BigDecimal('1')
+        # attractiveness_beta_at_distance_0 = BigDecimal('1')
+        attractiveness_beta_at_distance_0 = 1
 
         fireflies_copy = @fireflies.map(&:deep_clone)
 
@@ -97,12 +101,16 @@ module MetaheuristicAlgorithms
 
               distance_of_two_fireflies = distance_of_two_fireflies(firefly_i, firefly_j)
 
-              attractiveness_beta = attractiveness_beta_at_distance_0 * BigMath.exp(-absorption_coefficient_gamma * distance_of_two_fireflies.power(2), 10)
+              # attractiveness_beta = attractiveness_beta_at_distance_0 * BigMath.exp(-absorption_coefficient_gamma * distance_of_two_fireflies.power(2), 10)
+              attractiveness_beta = attractiveness_beta_at_distance_0 * Math.exp(-absorption_coefficient_gamma * distance_of_two_fireflies.power(2))
 
               @number_of_variables.times do |variable_index|
-                new_location_coordinate = firefly_i.location_coordinates[variable_index] * (BigDecimal('1') - attractiveness_beta) 
+                # new_location_coordinate = firefly_i.location_coordinates[variable_index] * (BigDecimal('1') - attractiveness_beta) 
+                #                           + firefly_j.location_coordinates[variable_index] * attractiveness_beta 
+                #                           + randomization_parameter_alpha * (bigdecimal_rand - BigDecimal('0.5'))
+                new_location_coordinate = firefly_i.location_coordinates[variable_index] * (1 - attractiveness_beta) 
                                           + firefly_j.location_coordinates[variable_index] * attractiveness_beta 
-                                          + randomization_parameter_alpha * (bigdecimal_rand - BigDecimal('0.5'))
+                                          + randomization_parameter_alpha * (bigdecimal_rand - 0.5)                
                 new_location_coordinate = constrain_within_range(new_location_coordinate, variable_index)
 
                 firefly_i.location_coordinates[variable_index] = new_location_coordinate
@@ -128,7 +136,8 @@ module MetaheuristicAlgorithms
 
       def distance_of_two_fireflies(firefly_1, firefly_2)
 
-        sum_of_squares = (0...@number_of_variables).inject(BigDecimal('0')) do |sum, variable_index|
+        # sum_of_squares = (0...@number_of_variables).inject(BigDecimal('0')) do |sum, variable_index|
+        sum_of_squares = (0...@number_of_variables).inject(0) do |sum, variable_index|
           sum + (firefly_1.location_coordinates[variable_index] - firefly_2.location_coordinates[variable_index]).power(2)
         end
 
