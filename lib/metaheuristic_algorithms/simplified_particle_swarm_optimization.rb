@@ -15,12 +15,15 @@ module MetaheuristicAlgorithms
                                end        
     end
 
-    def search(number_of_particiles: 20, number_of_iterations: 15, social_coefficient: BigDecimal('0.5'), random_variable_coefficient: BigDecimal('0.2'))
+    # def search(number_of_particiles: 20, number_of_iterations: 15, social_coefficient: BigDecimal('0.5'), random_variable_coefficient: BigDecimal('0.2'))
+    def search(number_of_particiles: 20, number_of_iterations: 15, social_coefficient: 0.5, random_variable_coefficient: 0.2)
 
       number_of_particiles = number_of_particiles.to_i unless number_of_particiles.kind_of?(Integer)
       number_of_iterations = number_of_iterations.to_i unless number_of_iterations.kind_of?(Integer)
-      social_coefficient = BigDecimal(social_coefficient.to_s) unless social_coefficient.kind_of?(BigDecimal)
-      random_variable_coefficient = BigDecimal(random_variable_coefficient.to_s) unless random_variable_coefficient.kind_of?(BigDecimal)        
+      # social_coefficient = BigDecimal(social_coefficient.to_s) unless social_coefficient.kind_of?(BigDecimal)
+      # random_variable_coefficient = BigDecimal(random_variable_coefficient.to_s) unless random_variable_coefficient.kind_of?(BigDecimal)        
+      social_coefficient = social_coefficient.to_f unless social_coefficient.kind_of?(Float)
+      random_variable_coefficient = random_variable_coefficient.to_f unless random_variable_coefficient.kind_of?(Float)        
 
       initialize_particles(number_of_particiles)
 
@@ -66,10 +69,12 @@ module MetaheuristicAlgorithms
           (0...@number_of_variables).map do |variable_index|
 
             # The value out-of-range in order to enter while loop
-            new_particle_location_coordinate = @function_wrapper.miminum_decision_variable_values[variable_index] - BigDecimal('1')
+            # new_particle_location_coordinate = @function_wrapper.miminum_decision_variable_values[variable_index] - BigDecimal('1')
+            new_particle_location_coordinate = @function_wrapper.miminum_decision_variable_values[variable_index] - 1
 
             while new_particle_location_coordinate < @function_wrapper.miminum_decision_variable_values[variable_index] || new_particle_location_coordinate > @function_wrapper.maximum_decision_variable_values[variable_index]
-              new_particle_location_coordinate = (BigDecimal('1') - social_coefficient) * particle_location[variable_index] + social_coefficient * global_best_position[variable_index] + random_variable_coefficient * (bigdecimal_rand - BigDecimal('0.5'))
+              # new_particle_location_coordinate = (BigDecimal('1') - social_coefficient) * particle_location[variable_index] + social_coefficient * global_best_position[variable_index] + random_variable_coefficient * (bigdecimal_rand - BigDecimal('0.5'))
+              new_particle_location_coordinate = (1 - social_coefficient) * particle_location[variable_index] + social_coefficient * global_best_position[variable_index] + random_variable_coefficient * (rand - 0.5)
             end
 
             new_particle_location_coordinate
