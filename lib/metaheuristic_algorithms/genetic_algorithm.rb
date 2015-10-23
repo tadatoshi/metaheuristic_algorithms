@@ -19,13 +19,17 @@ module MetaheuristicAlgorithms
       # @string_length_in_bits = 16
     end
 
-    def search(population_size: 20, maximum_number_of_generations: 100, number_of_mutation_sites: BigDecimal('2'), crossover_probability: BigDecimal('0.95'), mutation_probability: BigDecimal('0.05'))
+    # def search(population_size: 20, maximum_number_of_generations: 100, number_of_mutation_sites: BigDecimal('2'), crossover_probability: BigDecimal('0.95'), mutation_probability: BigDecimal('0.05'))
+    def search(population_size: 20, maximum_number_of_generations: 100, number_of_mutation_sites: 2, crossover_probability: 0.95, mutation_probability: 0.05)
 
       population_size = population_size.to_i unless population_size.kind_of?(Integer)
       maximum_number_of_generations = maximum_number_of_generations.to_i unless maximum_number_of_generations.kind_of?(Integer)
-      number_of_mutation_sites = BigDecimal(number_of_mutation_sites.to_s) unless number_of_mutation_sites.kind_of?(BigDecimal)
-      crossover_probability = BigDecimal(crossover_probability.to_s) unless crossover_probability.kind_of?(BigDecimal)
-      mutation_probability = BigDecimal(mutation_probability.to_s) unless mutation_probability.kind_of?(BigDecimal)
+      # number_of_mutation_sites = BigDecimal(number_of_mutation_sites.to_s) unless number_of_mutation_sites.kind_of?(BigDecimal)
+      # crossover_probability = BigDecimal(crossover_probability.to_s) unless crossover_probability.kind_of?(BigDecimal)
+      # mutation_probability = BigDecimal(mutation_probability.to_s) unless mutation_probability.kind_of?(BigDecimal)
+      number_of_mutation_sites = number_of_mutation_sites.to_i unless number_of_mutation_sites.kind_of?(Integer)
+      crossover_probability = crossover_probability.to_f unless crossover_probability.kind_of?(Float)
+      mutation_probability = mutation_probability.to_f unless mutation_probability.kind_of?(Float)      
 
       initialize_population(population_size)
 
@@ -35,7 +39,8 @@ module MetaheuristicAlgorithms
 
         population_size.times do |individual_index|
 
-          if bigdecimal_rand < crossover_probability
+          # if bigdecimal_rand < crossover_probability
+          if rand < crossover_probability
 
             # Crossover pair:
             crossover_pair_1_index = generate_random_index(population_size)
@@ -45,7 +50,8 @@ module MetaheuristicAlgorithms
 
           end
 
-          if bigdecimal_rand < mutation_probability
+          # if bigdecimal_rand < mutation_probability
+          if rand < mutation_probability
 
             mutation_individual_index = generate_random_index(population_size)
 
@@ -142,7 +148,7 @@ module MetaheuristicAlgorithms
 
       def binary_32_string_to_decimal(binary_32_string)
         decimal_float_value = [binary_32_string].pack("B*").unpack('g')[0].round(4)
-        BigDecimal(decimal_float_value.to_s)
+        # BigDecimal(decimal_float_value.to_s)
       end
 
       def mutate(individual_index, number_of_mutation_sites)

@@ -3,11 +3,13 @@ module MetaheuristicAlgorithms
   module CalculationHelper
 
     def degree_to_radian(degree)
-      degree * BigDecimal(Math::PI.to_s) / BigDecimal('180')
+      # degree * BigDecimal(Math::PI.to_s) / BigDecimal('180')
+      degree * Math::PI / 180
     end
 
     def radian_to_degree(radian)
-      radian * BigDecimal('180') / BigDecimal(Math::PI.to_s)
+      # radian * BigDecimal('180') / BigDecimal(Math::PI.to_s)
+      radian * 180 / Math::PI
     end
 
     def bigdecimal_exp(bigdecimal_value)

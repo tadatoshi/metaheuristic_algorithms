@@ -22,13 +22,17 @@ module MetaheuristicAlgorithms
                              end 
     end
 
-    def search(maximum_attempt: 2500, pitch_adjusting_range: BigDecimal('100'), harmony_search_size: 20, harmony_memory_acceping_rate: BigDecimal('0.95'), pitch_adjusting_rate: BigDecimal('0.7'))
+    # def search(maximum_attempt: 2500, pitch_adjusting_range: BigDecimal('100'), harmony_search_size: 20, harmony_memory_acceping_rate: BigDecimal('0.95'), pitch_adjusting_rate: BigDecimal('0.7'))
+    def search(maximum_attempt: 2500, pitch_adjusting_range: 100, harmony_search_size: 20, harmony_memory_acceping_rate: 0.95, pitch_adjusting_rate: 0.7)
 
       maximum_attempt = maximum_attempt.to_i unless maximum_attempt.kind_of?(Integer)
-      pitch_adjusting_range = BigDecimal(pitch_adjusting_range.to_s) unless pitch_adjusting_range.kind_of?(BigDecimal)
+      # pitch_adjusting_range = BigDecimal(pitch_adjusting_range.to_s) unless pitch_adjusting_range.kind_of?(BigDecimal)
+      pitch_adjusting_range = pitch_adjusting_range.to_f unless pitch_adjusting_range.kind_of?(Float)
       harmony_search_size = harmony_search_size.to_i unless harmony_search_size.kind_of?(Integer)
-      harmony_memory_acceping_rate = BigDecimal(harmony_memory_acceping_rate.to_s) unless harmony_memory_acceping_rate.kind_of?(BigDecimal)
-      pitch_adjusting_rate = BigDecimal(pitch_adjusting_rate.to_s) unless pitch_adjusting_rate.kind_of?(BigDecimal)
+      # harmony_memory_acceping_rate = BigDecimal(harmony_memory_acceping_rate.to_s) unless harmony_memory_acceping_rate.kind_of?(BigDecimal)
+      # pitch_adjusting_rate = BigDecimal(pitch_adjusting_rate.to_s) unless pitch_adjusting_rate.kind_of?(BigDecimal)
+      harmony_memory_acceping_rate = harmony_memory_acceping_rate.to_f unless harmony_memory_acceping_rate.kind_of?(Float)
+      pitch_adjusting_rate = pitch_adjusting_rate.to_f unless pitch_adjusting_rate.kind_of?(Float)
 
       initialize_harmony_memory(harmony_search_size)
 
@@ -40,12 +44,15 @@ module MetaheuristicAlgorithms
             decision_variable_value = get_decision_variable_value_by_randomization(variable_index)
           else
             # Since the array index starts with 0 unlike MatLab, 1 is not added as in the code example in MatLab:
-            harmony_memory_random_index = (harmony_search_size * bigdecimal_rand).fix
+            # harmony_memory_random_index = (harmony_search_size * bigdecimal_rand).fix
+            harmony_memory_random_index = (harmony_search_size * rand).to_i
             decision_variable_value = @harmony_memory[harmony_memory_random_index][variable_index]
             
-            if bigdecimal_rand < pitch_adjusting_rate
+            # if bigdecimal_rand < pitch_adjusting_rate
+            if rand < pitch_adjusting_rate
               pitch_adjusting = (@function_wrapper.maximum_decision_variable_values[variable_index] - @function_wrapper.miminum_decision_variable_values[variable_index]) / pitch_adjusting_range
-              decision_variable_value = decision_variable_value + pitch_adjusting * (bigdecimal_rand - BigDecimal('0.5'))
+              # decision_variable_value = decision_variable_value + pitch_adjusting * (bigdecimal_rand - BigDecimal('0.5'))
+              decision_variable_value = decision_variable_value + pitch_adjusting * (rand -0.5)
             end
           end
 

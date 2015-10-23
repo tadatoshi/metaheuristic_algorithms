@@ -78,7 +78,8 @@ module MetaheuristicAlgorithms
             get_decision_variable_value_by_randomization(variable_index)
           end
 
-          firefly = Firefly.new(@function_wrapper, decision_variable_values, BigDecimal('0'))
+          # firefly = Firefly.new(@function_wrapper, decision_variable_values, BigDecimal('0'))
+          firefly = Firefly.new(@function_wrapper, decision_variable_values, 0)
           @fireflies << firefly
         end
 
@@ -110,7 +111,7 @@ module MetaheuristicAlgorithms
                 #                           + randomization_parameter_alpha * (bigdecimal_rand - BigDecimal('0.5'))
                 new_location_coordinate = firefly_i.location_coordinates[variable_index] * (1 - attractiveness_beta) 
                                           + firefly_j.location_coordinates[variable_index] * attractiveness_beta 
-                                          + randomization_parameter_alpha * (bigdecimal_rand - 0.5)                
+                                          + randomization_parameter_alpha * (rand - 0.5)                
                 new_location_coordinate = constrain_within_range(new_location_coordinate, variable_index)
 
                 firefly_i.location_coordinates[variable_index] = new_location_coordinate

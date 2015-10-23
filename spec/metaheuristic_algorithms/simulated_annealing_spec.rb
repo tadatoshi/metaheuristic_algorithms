@@ -5,7 +5,7 @@ describe MetaheuristicAlgorithms::SimulatedAnnealing do
 
   it "should find the glocal minimum value for Rosenbrook's Function" do
 
-    pending('Improve the speed.')
+    # pending('Improve the speed.')
 
     rosenbrook_function_wrapper = MetaheuristicAlgorithms::FunctionWrappers::RosenbrookFunctionWrapper.new
 

@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'bigdecimal'
+# require 'bigdecimal'
 
 describe MetaheuristicAlgorithms::GeneticAlgorithm do
 
@@ -13,16 +13,21 @@ describe MetaheuristicAlgorithms::GeneticAlgorithm do
 
     population_size = 20
     maximum_number_of_generations = 100
-    number_of_mutation_sites = BigDecimal('2')
-    crossover_probability = BigDecimal('0.95')
-    mutation_probability = BigDecimal('0.05')
+    # number_of_mutation_sites = BigDecimal('2')
+    number_of_mutation_sites = 2
+    # crossover_probability = BigDecimal('0.95')
+    crossover_probability = 0.95
+    # mutation_probability = BigDecimal('0.05')
+    mutation_probability = 0.05
 
     result = @genetic_algorithm.search(population_size: population_size, maximum_number_of_generations: maximum_number_of_generations, 
                                        number_of_mutation_sites: number_of_mutation_sites, crossover_probability: crossover_probability, 
                                        mutation_probability: mutation_probability)
 
-    expect(result[:best_decision_variable_values][0]).to be_within(1).of(BigDecimal('3.1416'))
-    expect(result[:best_objective_function_value]).to be_within(1).of(BigDecimal('1.000'))   
+    # expect(result[:best_decision_variable_values][0]).to be_within(1).of(BigDecimal('3.1416'))
+    # expect(result[:best_objective_function_value]).to be_within(1).of(BigDecimal('1.000'))
+    expect(result[:best_decision_variable_values][0]).to be_within(1).of(3.1416)
+    expect(result[:best_objective_function_value]).to be_within(1).of(1.000)   
 
   end
 
@@ -30,7 +35,8 @@ describe MetaheuristicAlgorithms::GeneticAlgorithm do
 
     it 'should convert decimal number to binary 0s and 1s string' do
 
-      decimal_number = BigDecimal('45.2333')
+      # decimal_number = BigDecimal('45.2333')
+      decimal_number = 45.2333
       binary_0s_and_1s_string = '01000010001101001110111011100110'
 
       expect(@genetic_algorithm.send(:decimal_to_binary_32_string, decimal_number)).to eq(binary_0s_and_1s_string)
@@ -39,7 +45,8 @@ describe MetaheuristicAlgorithms::GeneticAlgorithm do
 
     it 'should convert binary 0s and 1s string to decimal number' do
 
-      decimal_number = BigDecimal('45.2333')
+      # decimal_number = BigDecimal('45.2333')
+      decimal_number = 45.2333
       binary_0s_and_1s_string = '01000010001101001110111011100110'
 
       expect(@genetic_algorithm.send(:binary_32_string_to_decimal, binary_0s_and_1s_string)).to eq(decimal_number)

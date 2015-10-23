@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'bigdecimal'
+# require 'bigdecimal'
 
 describe MetaheuristicAlgorithms::HarmonySearch do
 
@@ -10,18 +10,24 @@ describe MetaheuristicAlgorithms::HarmonySearch do
     harmony_search = MetaheuristicAlgorithms::HarmonySearch.new(rosenbrook_function_wrapper, number_of_variables: 2, objective: :minimization)
 
     maximum_attempt = 25000
-    pitch_adjusting_range = BigDecimal('100')
+    # pitch_adjusting_range = BigDecimal('100')
+    pitch_adjusting_range = 100
     harmony_search_size = 20
-    harmony_memory_acceping_rate = BigDecimal('0.95')
-    pitch_adjusting_rate = BigDecimal('0.7')    
+    # harmony_memory_acceping_rate = BigDecimal('0.95')
+    harmony_memory_acceping_rate = 0.95
+    # pitch_adjusting_rate = BigDecimal('0.7')  
+    pitch_adjusting_rate = 0.7  
 
     result = harmony_search.search(maximum_attempt: maximum_attempt, pitch_adjusting_range: pitch_adjusting_range, 
                                    harmony_search_size: harmony_search_size, harmony_memory_acceping_rate: harmony_memory_acceping_rate, 
                                    pitch_adjusting_rate: pitch_adjusting_rate)
 
-    expect(result[:best_decision_variable_values][0]).to be_within(1).of(BigDecimal('1.0112'))
-    expect(result[:best_decision_variable_values][1]).to be_within(1).of(BigDecimal('0.9988')) 
-    expect(result[:best_objective_function_value]).to be_within(1).of(BigDecimal('0.0563'))      
+    # expect(result[:best_decision_variable_values][0]).to be_within(1).of(BigDecimal('1.0112'))
+    # expect(result[:best_decision_variable_values][1]).to be_within(1).of(BigDecimal('0.9988')) 
+    # expect(result[:best_objective_function_value]).to be_within(1).of(BigDecimal('0.0563')) 
+    expect(result[:best_decision_variable_values][0]).to be_within(1).of(1.0112)
+    expect(result[:best_decision_variable_values][1]).to be_within(1).of(0.9988) 
+    expect(result[:best_objective_function_value]).to be_within(1).of(0.0563)         
 
   end
 
