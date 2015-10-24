@@ -1,5 +1,5 @@
 require 'metaheuristic_algorithms/version'
-require 'bigdecimal'
+# require 'bigdecimal'
 require 'metaheuristic_algorithms/calculation_helper'
 require 'metaheuristic_algorithms/function_wrappers'
 require 'metaheuristic_algorithms/helper'

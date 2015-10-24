@@ -9,12 +9,12 @@ module MetaheuristicAlgorithms
 
       def maximum_decision_variable_values
         # [BigDecimal('10')]
-        10
+        [10]
       end
 
       def miminum_decision_variable_values
         # [BigDecimal('-10')]
-        -10
+        [-10]
       end
 
       def objective_function_value(decision_variable_values)

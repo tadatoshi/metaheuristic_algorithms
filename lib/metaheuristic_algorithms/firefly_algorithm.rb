@@ -103,7 +103,7 @@ module MetaheuristicAlgorithms
               distance_of_two_fireflies = distance_of_two_fireflies(firefly_i, firefly_j)
 
               # attractiveness_beta = attractiveness_beta_at_distance_0 * BigMath.exp(-absorption_coefficient_gamma * distance_of_two_fireflies.power(2), 10)
-              attractiveness_beta = attractiveness_beta_at_distance_0 * Math.exp(-absorption_coefficient_gamma * distance_of_two_fireflies.power(2))
+              attractiveness_beta = attractiveness_beta_at_distance_0 * Math.exp(-absorption_coefficient_gamma * distance_of_two_fireflies**2)
 
               @number_of_variables.times do |variable_index|
                 # new_location_coordinate = firefly_i.location_coordinates[variable_index] * (BigDecimal('1') - attractiveness_beta) 
@@ -139,10 +139,10 @@ module MetaheuristicAlgorithms
 
         # sum_of_squares = (0...@number_of_variables).inject(BigDecimal('0')) do |sum, variable_index|
         sum_of_squares = (0...@number_of_variables).inject(0) do |sum, variable_index|
-          sum + (firefly_1.location_coordinates[variable_index] - firefly_2.location_coordinates[variable_index]).power(2)
+          sum + (firefly_1.location_coordinates[variable_index] - firefly_2.location_coordinates[variable_index])**2
         end
 
-        sum_of_squares.sqrt(10)
+        Math.sqrt(sum_of_squares)
 
       end       
 

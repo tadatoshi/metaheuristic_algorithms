@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'bigdecimal'
+# require 'bigdecimal'
 
 describe MetaheuristicAlgorithms::VirtualBeeAlgorithm do
 
@@ -16,9 +16,12 @@ describe MetaheuristicAlgorithms::VirtualBeeAlgorithm do
 
     result = virtual_bee_algorithm.search(number_of_virtual_bees: number_of_virtual_bees, number_of_foraging_explorations: number_of_foraging_explorations)
 
-    expect(result[:best_decision_variable_values][0]).to be_within(1).of(BigDecimal('1.0112'))
-    expect(result[:best_decision_variable_values][1]).to be_within(1).of(BigDecimal('0.9988')) 
-    expect(result[:best_objective_function_value]).to be_within(1).of(BigDecimal('0.0563'))      
+    # expect(result[:best_decision_variable_values][0]).to be_within(1).of(BigDecimal('1.0112'))
+    # expect(result[:best_decision_variable_values][1]).to be_within(1).of(BigDecimal('0.9988')) 
+    # expect(result[:best_objective_function_value]).to be_within(1).of(BigDecimal('0.0563')) 
+    expect(result[:best_decision_variable_values][0]).to be_within(1).of(1.0112)
+    expect(result[:best_decision_variable_values][1]).to be_within(1).of(0.9988) 
+    expect(result[:best_objective_function_value]).to be_within(1).of(0.0563)         
 
   end
 

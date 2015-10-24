@@ -1,3 +1,5 @@
+require 'bigdecimal'
+
 module MetaheuristicAlgorithms
 
   module CalculationHelper

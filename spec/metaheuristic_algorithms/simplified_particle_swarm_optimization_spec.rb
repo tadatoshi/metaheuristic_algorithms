@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'bigdecimal'
+# require 'bigdecimal'
 
 describe MetaheuristicAlgorithms::SimplifiedParticleSwarmOptimization do
 
