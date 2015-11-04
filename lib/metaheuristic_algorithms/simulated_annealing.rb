@@ -128,7 +128,8 @@ module MetaheuristicAlgorithms
       end
 
       def acceptance_probability(evaluation_delta, temperature, bolzmann_constant)
-        BigMath.exp((-evaluation_delta / (bolzmann_constant * temperature)), 10)
+        # BigMath.exp((-evaluation_delta / (bolzmann_constant * temperature)), 10)
+        Math.exp(-evaluation_delta / (bolzmann_constant * temperature))
       end
 
   end

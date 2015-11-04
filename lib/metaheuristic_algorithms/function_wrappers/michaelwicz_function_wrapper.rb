@@ -25,7 +25,7 @@ module MetaheuristicAlgorithms
       end
 
       def initial_decision_variable_value_estimates
-        raise "#{__method__} method must be implemented in the subclass"
+        raise "#{__method__} method has no definition"
       end
 
     end
