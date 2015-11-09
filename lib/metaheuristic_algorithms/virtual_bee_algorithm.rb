@@ -16,7 +16,7 @@ module MetaheuristicAlgorithms
       number_of_virtual_bees = number_of_virtual_bees.to_i unless number_of_virtual_bees.kind_of?(Integer)
       number_of_foraging_explorations = number_of_foraging_explorations.to_i unless number_of_foraging_explorations.kind_of?(Integer)
 
-      solution_estimates = @function_wrapper.initial_decision_variable_value_estimates
+      solution_estimates = @function_wrapper.initial_decision_variable_value_estimates.map(&:to_f)
 
 
 

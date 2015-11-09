@@ -82,7 +82,7 @@ module MetaheuristicAlgorithms
             get_decision_variable_value_by_randomization(variable_index)
           end
           @population << decision_variable_values
-          @population_fitness << @function_wrapper.objective_function_value(decision_variable_values)
+          @population_fitness << @function_wrapper.objective_function_value(decision_variable_values).to_f
         end
 
       end
@@ -126,8 +126,8 @@ module MetaheuristicAlgorithms
 
         end 
 
-        new_crossover_pair_1_fitness = @function_wrapper.objective_function_value(crossover_pair_1_decimal_values)
-        new_crossover_pair_2_fitness = @function_wrapper.objective_function_value(crossover_pair_2_decimal_values)
+        new_crossover_pair_1_fitness = @function_wrapper.objective_function_value(crossover_pair_1_decimal_values).to_f
+        new_crossover_pair_2_fitness = @function_wrapper.objective_function_value(crossover_pair_2_decimal_values).to_f
 
         if new_crossover_pair_1_fitness > @population_fitness[crossover_pair_1_index] && 
            new_crossover_pair_2_fitness > @population_fitness[crossover_pair_2_index]
@@ -176,7 +176,7 @@ module MetaheuristicAlgorithms
 
         end
 
-        new_individual_fitness = @function_wrapper.objective_function_value(decimal_values)
+        new_individual_fitness = @function_wrapper.objective_function_value(decimal_values).to_f
 
         if new_individual_fitness > @population_fitness[individual_index]          
 
@@ -193,7 +193,7 @@ module MetaheuristicAlgorithms
       end
 
       def in_the_range?(decimal_value, variable_index)
-        decimal_value >= @function_wrapper.miminum_decision_variable_values[variable_index] && decimal_value <= @function_wrapper.maximum_decision_variable_values[variable_index]
+        decimal_value >= @function_wrapper.minimum_decision_variable_values[variable_index].to_f && decimal_value <= @function_wrapper.maximum_decision_variable_values[variable_index].to_f
       end 
 
       def deep_clone_population

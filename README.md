@@ -59,7 +59,7 @@ Step 1. Create a Function Wrapper for your objective function by extending Metah
         [5, 5]
       end
 
-      def miminum_decision_variable_values
+      def minimum_decision_variable_values
         [-5, -5]
       end
 

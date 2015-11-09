@@ -10,9 +10,9 @@ module MetaheuristicAlgorithms
       end
 
       # Return value: Array
-      def miminum_decision_variable_values
+      def minimum_decision_variable_values
         raise "#{__method__} method must be implemented in the subclass"
-      end    
+      end
 
       # Input value: Array
       def objective_function_value(decision_variable_values)

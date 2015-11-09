@@ -51,9 +51,9 @@ module MetaheuristicAlgorithms
       number_of_acceptances = 0
       total_evaluations = 0
 
-      initial_estimates = @function_wrapper.initial_decision_variable_value_estimates
+      initial_estimates = @function_wrapper.initial_decision_variable_value_estimates.map(&:to_f)
 
-      best_evaluation = @function_wrapper.objective_function_value(initial_estimates)
+      best_evaluation = @function_wrapper.objective_function_value(initial_estimates).to_f
 
       best_solution = initial_estimates      
 
@@ -72,7 +72,7 @@ module MetaheuristicAlgorithms
         end
 
         new_estimates = estimate_solution(initial_estimates, standard_diviation_for_estimation)
-        new_evaluation = @function_wrapper.objective_function_value(new_estimates)
+        new_evaluation = @function_wrapper.objective_function_value(new_estimates).to_f
 
         evaluation_delta = ratio_of_energy_delta_over_evaluation_delta * (new_evaluation - best_evaluation)
 
@@ -107,10 +107,10 @@ module MetaheuristicAlgorithms
         (0...@number_of_variables).map do |variable_index|
 
           # The value out-of-range in order to enter while loop
-          # new_estimate = @function_wrapper.miminum_decision_variable_values[variable_index] - BigDecimal('1')
-          new_estimate = @function_wrapper.miminum_decision_variable_values[variable_index] - 1
+          # new_estimate = @function_wrapper.minimum_decision_variable_values[variable_index] - BigDecimal('1')
+          new_estimate = @function_wrapper.minimum_decision_variable_values[variable_index].to_f - 1
 
-          while new_estimate < @function_wrapper.miminum_decision_variable_values[variable_index] || new_estimate > @function_wrapper.maximum_decision_variable_values[variable_index]
+          while new_estimate < @function_wrapper.minimum_decision_variable_values[variable_index].to_f || new_estimate > @function_wrapper.maximum_decision_variable_values[variable_index].to_f
 
             # MatLab example code uses newGuess = initialGuess + rand(1,2) * randn;
             # But in our case, the value range is different. 

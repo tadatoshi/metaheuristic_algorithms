@@ -50,7 +50,7 @@ module MetaheuristicAlgorithms
             
             # if bigdecimal_rand < pitch_adjusting_rate
             if rand < pitch_adjusting_rate
-              pitch_adjusting = (@function_wrapper.maximum_decision_variable_values[variable_index] - @function_wrapper.miminum_decision_variable_values[variable_index]) / pitch_adjusting_range
+              pitch_adjusting = (@function_wrapper.maximum_decision_variable_values[variable_index].to_f - @function_wrapper.minimum_decision_variable_values[variable_index].to_f) / pitch_adjusting_range
               # decision_variable_value = decision_variable_value + pitch_adjusting * (bigdecimal_rand - BigDecimal('0.5'))
               decision_variable_value = decision_variable_value + pitch_adjusting * (rand -0.5)
             end
@@ -60,7 +60,7 @@ module MetaheuristicAlgorithms
 
         end
 
-        best_function_value = @function_wrapper.objective_function_value(decision_variable_values) 
+        best_function_value = @function_wrapper.objective_function_value(decision_variable_values).to_f 
 
         # TODO: Evaluate this logic. It appears that best_function_value_harmony_memory only needs to store the max best_function_value and the corresponding harmony_memory_random_index of harmony_memory. 
         #       The simpler implementation for MatLab doesn't seem to be a good implementation in Ruby here. 
@@ -96,7 +96,7 @@ module MetaheuristicAlgorithms
           end
 
           @harmony_memory << decision_variable_values
-          @best_function_value_harmony_memory << @function_wrapper.objective_function_value(decision_variable_values)
+          @best_function_value_harmony_memory << @function_wrapper.objective_function_value(decision_variable_values).to_f
 
         end
 

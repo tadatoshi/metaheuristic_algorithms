@@ -11,7 +11,7 @@ module MetaheuristicAlgorithms
         [5, 5]
       end
 
-      def miminum_decision_variable_values
+      def minimum_decision_variable_values
         # [BigDecimal('-5'), BigDecimal('-5')]
         [-5, -5]
       end

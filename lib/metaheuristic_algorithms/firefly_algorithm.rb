@@ -20,7 +20,7 @@ module MetaheuristicAlgorithms
       end
 
       def update_light_intensity
-        @light_intensity = @function_wrapper.objective_function_value(@location_coordinates)
+        @light_intensity = @function_wrapper.objective_function_value(@location_coordinates).to_f
       end
 
       def deep_clone
@@ -126,10 +126,10 @@ module MetaheuristicAlgorithms
       end
 
       def constrain_within_range(location_coordinate, variable_index)
-        if location_coordinate < @function_wrapper.miminum_decision_variable_values[variable_index]
-          @function_wrapper.miminum_decision_variable_values[variable_index]
-        elsif location_coordinate > @function_wrapper.maximum_decision_variable_values[variable_index]
-          @function_wrapper.maximum_decision_variable_values[variable_index]
+        if location_coordinate < (minimum_decision_variable_values = @function_wrapper.minimum_decision_variable_values[variable_index].to_f)
+          minimum_decision_variable_values
+        elsif location_coordinate > (maximum_decision_variable_values = @function_wrapper.maximum_decision_variable_values[variable_index].to_f)
+          maximum_decision_variable_values
         else
           location_coordinate
         end

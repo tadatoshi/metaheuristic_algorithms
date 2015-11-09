@@ -3,10 +3,10 @@ module MetaheuristicAlgorithms
   module BaseAlgorithmModule
 
     def get_decision_variable_value_by_randomization(decision_variable_index)
-      # @function_wrapper.miminum_decision_variable_values[decision_variable_index] 
-      # + (@function_wrapper.maximum_decision_variable_values[decision_variable_index] - @function_wrapper.miminum_decision_variable_values[decision_variable_index]) * bigdecimal_rand
-      @function_wrapper.miminum_decision_variable_values[decision_variable_index] 
-      + (@function_wrapper.maximum_decision_variable_values[decision_variable_index] - @function_wrapper.miminum_decision_variable_values[decision_variable_index]) * rand
+      # @function_wrapper.minimum_decision_variable_values[decision_variable_index] 
+      # + (@function_wrapper.maximum_decision_variable_values[decision_variable_index] - @function_wrapper.minimum_decision_variable_values[decision_variable_index]) * bigdecimal_rand
+      @function_wrapper.minimum_decision_variable_values[decision_variable_index].to_f 
+      + (@function_wrapper.maximum_decision_variable_values[decision_variable_index].to_f - @function_wrapper.minimum_decision_variable_values[decision_variable_index].to_f) * rand
     end
 
     # Based on the code by antonakos on http://stackoverflow.com/questions/5825680/code-to-generate-gaussian-normally-distributed-random-numbers-in-ruby
