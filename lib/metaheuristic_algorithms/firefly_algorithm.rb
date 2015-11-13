@@ -94,7 +94,8 @@ module MetaheuristicAlgorithms
 
         @fireflies.each do |firefly_i|
 
-          fireflies_copy.delete(firefly_i)
+          # Since fireflies_copy is a deep clone of @fireflies:
+          delete_matching_element_from_fireflies_copy(fireflies_copy, firefly_i)
 
           fireflies_copy.each do |firefly_j|
 
@@ -123,6 +124,11 @@ module MetaheuristicAlgorithms
 
         end
 
+      end
+
+      def delete_matching_element_from_fireflies_copy(fireflies_copy, firefly)
+        matching_fireflies_copy_element = fireflies_copy.find { |fireflies_copy_element| fireflies_copy_element.light_intensity == firefly.light_intensity }
+        fireflies_copy.delete(matching_fireflies_copy_element)
       end
 
       def constrain_within_range(location_coordinate, variable_index)
